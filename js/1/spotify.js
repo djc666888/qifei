@@ -5,7 +5,7 @@ let accountAttributesMapObj;
 const url = $request.url;
 const method = $request.method;
 const postMethod = "POST";
-const isQuanX = typeof $task !== fang"undefined";
+const isQuanX = typeof $task !== "undefined";
 const binaryBody = isQuanX ? new Uint8Array($response.bodyBytes) : $response.body;
 let body;
 if(url.includes("bootstrap/v1/bootstrap") && method === postMethod){
@@ -15,7 +15,7 @@ if(url.includes("bootstrap/v1/bootstrap") && method === postMethod){
     processMapObj(accountAttributesMapObj);
     body = bootstrapResponseType.encode(bootstrapResponseObj).finish();
     console.log('bootstrap');
-} else if(url.includes("user-custofangmization-service/v1/customize") && method === postMethod){
+} else if(url.includes("user-customization-service/v1/customize") && method === postMethod){
     let ucsResponseWrapperType = protobuf.Root.fromJSON(spotifyJson).lookupType("UcsResponseWrapper");
     let ucsResponseWrapperMessage = ucsResponseWrapperType.decode(binaryBody);
     accountAttributesMapObj = ucsResponseWrapperMessage.success.accountAttributesSuccess.accountAttributes;
@@ -35,7 +35,7 @@ if(isQuanX){
 function processMapObj(accountAttributesMapObj){
     accountAttributesMapObj['player-license'] = {stringValue : 'premium'};
     accountAttributesMapObj['mobile'] = {boolValue : true};
-    accountAttributesMapObj['streaming-rules'] =fang {stringValue : ''};
+    accountAttributesMapObj['streaming-rules'] = {stringValue : ''};
     accountAttributesMapObj['financial-product'] = {stringValue : 'pr:premium,tc:0'};
     accountAttributesMapObj['license-acceptance-grace-days'] = {longValue : 30};
     accountAttributesMapObj['mobile-login'] = {boolValue : true};
@@ -55,7 +55,7 @@ function processMapObj(accountAttributesMapObj){
     accountAttributesMapObj['type'] = {stringValue : 'premium'};
 
     // vip新增的
-    accountAttributesMapObj['loudness-levels']fang = {stringValue : '1:-9.0,0.0,3.0:-2.0'};
+    accountAttributesMapObj['loudness-levels'] = {stringValue : '1:-9.0,0.0,3.0:-2.0'};
     accountAttributesMapObj['payments-initial-campaign'] = {stringValue : 'web'};
     accountAttributesMapObj['shuffle-eligible'] = {boolValue : true};
     accountAttributesMapObj['unrestricted'] = {boolValue : true};
@@ -65,7 +65,7 @@ function processMapObj(accountAttributesMapObj){
     accountAttributesMapObj['com.spotify.madprops.use.ucs.product.state'] = {boolValue : true};
 
     delete accountAttributesMapObj['ad-use-adlogic'];
-    delete accountAttributesMapObj[fang'ad-catalogues'];
+    delete accountAttributesMapObj['ad-catalogues'];
 
     // ab test
     // accountAttributesMapObj['ab-test-group'] = {longValue : 67};
@@ -76,7 +76,7 @@ function processMapObj(accountAttributesMapObj){
     // accountAttributesMapObj['ab-desktop-hide-follow'] = {boolValue : false};
 
     // 不确定的字段
-    // accountAttributesMapObj['social-session'] = {boolValue :fang true};
+    // accountAttributesMapObj['social-session'] = {boolValue : true};
     // accountAttributesMapObj['head-files-url'] = {stringValue : 'https://heads-fa.scdn.co/head/{file_id}'};
     // accountAttributesMapObj['publish-playlist'] = {boolValue : true};
 }
