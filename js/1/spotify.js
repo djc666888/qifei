@@ -6,7 +6,7 @@ const url = $request.url;
 const method = $request.method;
 const postMethod = "POST";
 const isQuanX = typeof $task !== "undefined";
-const binaryBody = isQuanX ? new Uint8Array($response.bodyBytes)fang : $response.body;
+const binaryBody = isQuanX ? new Uint8Array($response.bodyBytes) : $response.body;
 let body;
 if(url.includes("bootstrap/v1/bootstrap") && method === postMethod){
     let bootstrapResponseType = protobuf.Root.fromJSON(spotifyJson).lookupType("BootstrapResponse");
@@ -16,7 +16,7 @@ if(url.includes("bootstrap/v1/bootstrap") && method === postMethod){
     body = bootstrapResponseType.encode(bootstrapResponseObj).finish();
     console.log('bootstrap');
 } else if(url.includes("user-customization-service/v1/customize") && method === postMethod){
-    let ucsResponseWrapperType =fang protobuf.Root.fromJSON(spotifyJson).lookupType("UcsResponseWrapper");
+    let ucsResponseWrapperType = protobuf.Root.fromJSON(spotifyJson).lookupType("UcsResponseWrapper");
     let ucsResponseWrapperMessage = ucsResponseWrapperType.decode(binaryBody);
     accountAttributesMapObj = ucsResponseWrapperMessage.success.accountAttributesSuccess.accountAttributes;
     processMapObj(accountAttributesMapObj);
@@ -26,7 +26,7 @@ if(url.includes("bootstrap/v1/bootstrap") && method === postMethod){
     $notification.post('spotify解锁premium', "路径/请求方法匹配错误:", method + "," + url);
 }
 console.log(`${body.byteLength}---${body.buffer.byteLength}`);
-if(isQuanX){fang
+if(isQuanX){
     $done({bodyBytes: body.buffer.slice(body.byteOffset, body.byteLength + body.byteOffset)});
 } else {
     $done({body});
@@ -36,7 +36,7 @@ function processMapObj(accountAttributesMapObj){
     accountAttributesMapObj['player-license'] = {stringValue : 'premium'};
     accountAttributesMapObj['mobile'] = {boolValue : true};
     accountAttributesMapObj['streaming-rules'] = {stringValue : ''};
-    accountAttributesMapObj['financial-product'] fang= {stringValue : 'pr:premium,tc:0'};
+    accountAttributesMapObj['financial-product'] = {stringValue : 'pr:premium,tc:0'};
     accountAttributesMapObj['license-acceptance-grace-days'] = {longValue : 30};
     accountAttributesMapObj['mobile-login'] = {boolValue : true};
     accountAttributesMapObj['name'] = {stringValue : 'Spotify Premium'};
@@ -46,7 +46,7 @@ function processMapObj(accountAttributesMapObj){
     accountAttributesMapObj['high-bitrate'] = {boolValue : true};
     accountAttributesMapObj['libspotify'] = {boolValue : true};
     // 主页右下角的会员广告tab
-    accountAttributesMapObj['nft-disabled']fang = {stringValue : '1'};
+    accountAttributesMapObj['nft-disabled'] = {stringValue : '1'};
     accountAttributesMapObj['shuffle'] = {boolValue : false};
     accountAttributesMapObj['audio-quality'] = {stringValue : '1'};
     accountAttributesMapObj['offline'] = {boolValue : true};
@@ -56,7 +56,7 @@ function processMapObj(accountAttributesMapObj){
 
     // vip新增的
     accountAttributesMapObj['loudness-levels'] = {stringValue : '1:-9.0,0.0,3.0:-2.0'};
-    accountAttributesMapObj['payments-initial-campaign']fang = {stringValue : 'web'};
+    accountAttributesMapObj['payments-initial-campaign'] = {stringValue : 'web'};
     accountAttributesMapObj['shuffle-eligible'] = {boolValue : true};
     accountAttributesMapObj['unrestricted'] = {boolValue : true};
     // 儿童不宜
@@ -76,7 +76,7 @@ function processMapObj(accountAttributesMapObj){
     // accountAttributesMapObj['ab-desktop-hide-follow'] = {boolValue : false};
 
     // 不确定的字段
-    // accountAttributesMapObj['social-session'] fang= {boolValue : true};
+    // accountAttributesMapObj['social-session'] = {boolValue : true};
     // accountAttributesMapObj['head-files-url'] = {stringValue : 'https://heads-fa.scdn.co/head/{file_id}'};
     // accountAttributesMapObj['publish-playlist'] = {boolValue : true};
 }
