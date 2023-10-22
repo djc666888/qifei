@@ -47,7 +47,7 @@ hostname = app.moutai519.com.cn
 ^https:\/\/app\.moutai519\.com\.cn\/xhr\/front\/mall\/message\/unRead\/query url script-request-header https://raw.githubusercontent.com/djc666888/qifei/main/js/maot.js
 
 [task_local]
-17 9 * * * https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/i-maotai.js, tag=i 茅台, enabled=true
+17 9 * * * https://raw.githubusercontent.com/djc666888/qifei/main/js/maot.js, tag=i 茅台, enabled=true
 
 ------------------ Stash 配置 -----------------
 
