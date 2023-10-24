@@ -155,7 +155,9 @@ if ($.isNode()) {
   await getShopInfo();  // 获取门店库存
   for (let i = 0; i < CookieArr.length; i++) {
     $.userName = '', $.userId = '', $.mobile = '';
-    console.log(`\n======== 账号${i + 1} ========\n`);
+    console.log(`\n======== 账号${i + 1} ========\n`);let randomInt = Math.floor(Math.random() * 100);
+        console.log(`\n随机等待 ${randomInt} 秒\n`);
+        await $.wait(randomInt * 1000);
     message += `账号 ${i + 1}  `
     let TOKEN = CookieArr[i].split(',');
     if (TOKEN.length === 2) {
