@@ -4,7 +4,7 @@
  * @feedback https://t.me/yqc_777/
  * @author 𝒀𝒖𝒉𝒆𝒏𝒈
  * @update 20231002
- * @version 1.0.1
+ * @version 1.0.
  ******************************************
 ###详细见同目录README
 ```Quantumult X
