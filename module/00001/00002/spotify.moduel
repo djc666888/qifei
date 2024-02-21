@@ -1,5 +1,5 @@
 #!name=Spotify premium
-#!desc=请勿转发.VX：PJ-xiaowangzi
+#!desc=转发直接失效.VX：PJ-xiaowangzi
 # 功能: 1.去除语音广告 2.歌手/专辑列表正常展示 3.去除随机播放 4.无限切歌随意快进后退 5.解除14天地区登录限制.
 [MITM]
 hostname = %APPEND% spclient.wg.spotify.com
